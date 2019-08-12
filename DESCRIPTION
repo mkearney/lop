@@ -22,3 +22,5 @@ Imports:
     xml2,
     glue,
     future.apply
+URL: https://github.com/mkearney/hh
+BugReports: https://github.com/mkearney/hh/issues
