@@ -103,6 +103,63 @@ http_post.url_str <- function(x, config = list(), ...) {
 }
 
 
+try_null <- function(...) {
+  tryCatch(
+    ...,
+    error = function(e) NULL
+  )
+}
+
+try_lst <- function(...) {
+  tryCatch(
+    ...,
+    error = function(e) list()
+  )
+}
+try_df <- function(...) {
+  tryCatch(
+    ...,
+    error = function(e) tbl()
+  )
+}
+
+`%||%` <- function(a, b) {
+  if (is.null(a))
+    b
+  else
+    a
+}
+pbracket <- function(x) paste0("[", x, "]")
+
+fix_json_string <- function(x) {
+  x <- sub("^[^[{]+", "", x)
+  while (any(grepl("^\\[\\]|^\\{\\}", x))) {
+    x <- sub("^\\[\\]|^\\{\\}", "", x)
+    x <- sub("^[^[{]+", "", x)
+  }
+  x <- sub("[^]}]+$", "", x)
+  while (any(grepl("\\[\\]$|\\{\\}$", x))) {
+    x <- sub("\\[\\]$|\\{\\}$", "", x)
+    x <- sub("[^]}]+$", "", x)
+  }
+  x
+}
+
+pbracket <- function(x) paste0("[", x, "]")
+fj_ <- function(x, ...) {
+  o <- try_null(jsonlite::fromJSON(x, ...))
+  o <- o %||% try_null(jsonlite::fromJSON(
+    fix_json_string(x), ...))
+  o %||% try_null(jsonlite::fromJSON(
+    pbracket(x), ...))
+}
+fj <- function(x, ...) {
+  if (length(x) == 1) {
+    fj_(x, ...)
+  } else {
+    dapr::lap(x, fj_, ...)
+  }
+}
 # url_str("http://mikewk.com/hey", this = 3)
 # url_lst("http://mikewk.com/", path = "hey", now = TRUE, this = 3)
 # url_str("http://mikewk.com/", path = "hey", now = TRUE, this = 3)
