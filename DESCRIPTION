@@ -1,5 +1,5 @@
-Package: hh
-Title: Shortcuts for Web Scraping and Data Wrangling
+Package: lop
+Title: Condensed Function Calls
 Version: 0.0.1
 Authors@R: 
     person(given = "Michael W.",
@@ -22,5 +22,5 @@ Imports:
     xml2,
     glue,
     future.apply
-URL: https://github.com/mkearney/hh
-BugReports: https://github.com/mkearney/hh/issues
+URL: https://github.com/mkearney/lop
+BugReports: https://github.com/mkearney/lop/issues

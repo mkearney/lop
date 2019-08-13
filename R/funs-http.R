@@ -166,3 +166,54 @@ fj <- function(x, ...) {
 # url_str(url_lst("http://mikewk.com/hey", this = 3))
 # url_str("http://mikewk.com/hey=2", this = 3)
 # url_str("http://mikewk.com/hey=2", this = 3)
+
+all_pos_json <- function(x) {
+  c(
+    hnodes(x, "script") %>% htext(),
+    hnodes(x, "script") %>% hattrs() %>% unlist(),
+    hnodes(x, "meta") %>% hattrs() %>% unlist()
+  )
+}
+all_var_names <- function(x) {
+  UseMethod("all_var_names")
+}
+all_var_names.default <- function(x) {
+  character()
+}
+all_var_names.list <- function(x) {
+  if (!any(dapr::vap_lgl(x, is.recursive))) {
+    return(names(x))
+  }
+  c(names(x), unlist(unname(dapr::lap(x, all_var_names)), recursive = FALSE))
+}
+
+all_pos_txt <- function(x) {
+  sh <- capture.output(xml2::html_structure(x))
+  sh <- trimws(sh)
+  sh <- grep("^[^<]|[^>]$", sh, value = TRUE, invert = TRUE)
+  sh <- gsub("\\s{0,}\\[[^]]+\\]>", ">", sh)
+  sh <- gsub("\\..*", ">", sh)
+  sh <- ifelse(grepl("<script", sh), sh %P% "</script>", sh)
+  sh <- ifelse(grepl("<style", sh), sh %P% "</style>", sh)
+  yn <- grep("^<[/ ]{0,}html", sh, invert = TRUE)
+  sh[yn] <- "<" %P% gsub("^<|[.# >].*", "", sh[yn]) %P% "/>"
+  all_nodes <- paste(sh, collapse = " ") %P% "</html>" %>% hread() %>% hlst() %>% all_var_names() %>% unique()
+  unlist(dapr::lap(all_nodes, ~ c(hnodes(x, .x) %>% hattrs() %>% unlist(), hnodes(x, .x) %>% htext())))
+}
+rm_empty <- function(x) UseMethod("rm_empty")
+
+rm_empty.default <- function(x) {
+  if (is.atomic(x)) {
+    return(x)
+  }
+  x[lengths(x) > 0]
+}
+
+rm_empty.data.frame <- function(x) {
+  x
+}
+
+rm_empty.list <- function(x) {
+  x <- dapr::lap(x[lengths(x) > 0], rm_empty)
+  x[lengths(x) > 0]
+}
