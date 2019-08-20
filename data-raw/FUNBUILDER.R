@@ -53,8 +53,34 @@ dots <- list(
   c("rvest", "html_table", "htable")
 )
 
-cat(paste(dapr::vap_chr(
-  dots,
-  ~ do.call("doc_pkg_fun", as.list(.x))
-), collapse = "\n\n"),
+doc_pkg_fun_null <- function(pkg, og) {
+  glue::glue("#' {og}
+#'
+#' See \\code{{{pkg}::\\link[{pkg}:{og}]{{{og}}}} for details.
+#'
+#' @name {og}
+#' @rdname {og}
+#' @keywords internal
+#' @importFrom {pkg} {og}
+#' @export
+NULL\n")
+}
+
+more_dots <- list(
+  c("dapr", "lap"),
+  c("dapr", "ilap"),
+  c("dapr", "vap_chr"),
+  c("dapr", "vap_lgl"),
+  c("dapr", "vap_int"),
+  c("dapr", "vap_dbl"),
+  c("dapr", "dapc"),
+  c("dapr", "dapc_if")
+)
+
+dots_funs <- dapr::vap_chr(dots,
+  ~ do.call("doc_pkg_fun", as.list(.x)))
+more_dots_funs <- dapr::vap_chr(more_dots,
+  ~ do.call("doc_pkg_fun_null", as.list(.x)))
+
+cat(paste(c(dots_funs, more_dots_funs), collapse = "\n\n"),
   file = "R/utils-funs.R")

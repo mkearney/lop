@@ -21,6 +21,7 @@ Imports:
     rvest,
     xml2,
     glue,
-    future.apply
+    future.apply,
+    dapr
 URL: https://github.com/mkearney/lop
 BugReports: https://github.com/mkearney/lop/issues

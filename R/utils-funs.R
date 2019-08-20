@@ -317,3 +317,91 @@ hattrs <- rvest::html_attrs
 #' @keywords internal
 #' @export
 htable <- rvest::html_table
+
+#' lap
+#'
+#' See \code{dapr::\link[dapr:lap]{lap}} for details.
+#'
+#' @name lap
+#' @rdname lap
+#' @keywords internal
+#' @importFrom dapr lap
+#' @export
+NULL
+
+#' ilap
+#'
+#' See \code{dapr::\link[dapr:ilap]{ilap}} for details.
+#'
+#' @name ilap
+#' @rdname ilap
+#' @keywords internal
+#' @importFrom dapr ilap
+#' @export
+NULL
+
+#' vap_chr
+#'
+#' See \code{dapr::\link[dapr:vap_chr]{vap_chr}} for details.
+#'
+#' @name vap_chr
+#' @rdname vap_chr
+#' @keywords internal
+#' @importFrom dapr vap_chr
+#' @export
+NULL
+
+#' vap_lgl
+#'
+#' See \code{dapr::\link[dapr:vap_lgl]{vap_lgl}} for details.
+#'
+#' @name vap_lgl
+#' @rdname vap_lgl
+#' @keywords internal
+#' @importFrom dapr vap_lgl
+#' @export
+NULL
+
+#' vap_int
+#'
+#' See \code{dapr::\link[dapr:vap_int]{vap_int}} for details.
+#'
+#' @name vap_int
+#' @rdname vap_int
+#' @keywords internal
+#' @importFrom dapr vap_int
+#' @export
+NULL
+
+#' vap_dbl
+#'
+#' See \code{dapr::\link[dapr:vap_dbl]{vap_dbl}} for details.
+#'
+#' @name vap_dbl
+#' @rdname vap_dbl
+#' @keywords internal
+#' @importFrom dapr vap_dbl
+#' @export
+NULL
+
+#' dapc
+#'
+#' See \code{dapr::\link[dapr:dapc]{dapc}} for details.
+#'
+#' @name dapc
+#' @rdname dapc
+#' @keywords internal
+#' @importFrom dapr dapc
+#' @export
+NULL
+
+#' dapc_if
+#'
+#' See \code{dapr::\link[dapr:dapc_if]{dapc_if}} for details.
+#'
+#' @name dapc_if
+#' @rdname dapc_if
+#' @keywords internal
+#' @importFrom dapr dapc_if
+#' @export
+NULL

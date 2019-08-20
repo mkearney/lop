@@ -198,7 +198,8 @@ all_pos_txt <- function(x) {
   yn <- grep("^<[/ ]{0,}html", sh, invert = TRUE)
   sh[yn] <- "<" %P% gsub("^<|[.# >].*", "", sh[yn]) %P% "/>"
   all_nodes <- paste(sh, collapse = " ") %P% "</html>" %>% hread() %>% hlst() %>% all_var_names() %>% unique()
-  unlist(dapr::lap(all_nodes, ~ c(hnodes(x, .x) %>% hattrs() %>% unlist(), hnodes(x, .x) %>% htext())))
+  unlist(dapr::lap(all_nodes, ~ c(hnodes(x, .x) %>% hattrs() %>% unlist(), hnodes(x, .x) %>% htext()))) %>%
+    grep('":', ., value = TRUE)
 }
 rm_empty <- function(x) UseMethod("rm_empty")
 
@@ -217,3 +218,55 @@ rm_empty.list <- function(x) {
   x <- dapr::lap(x[lengths(x) > 0], rm_empty)
   x[lengths(x) > 0]
 }
+
+get_text <- function(x) {
+  httr::content(httr::GET(x), as = "text",
+    encoding = "UTF-8")
+}
+get_parsed <- function(x) {
+  httr::content(httr::GET(x), as = "parsed")
+}
+
+
+get_var_ <- function(x, var) UseMethod("get_var_")
+get_var_.list <- function(x, var) {
+  if (length(x) == 0) {
+    x <- NA
+  } else {
+    while (any(recs <- dapr::vap_lgl(x, is_rec))) {
+      x <- c(lapply(x[!recs], unlist),
+        unlist(unname(x[recs]), recursive = FALSE))
+    }
+    if (length(var) > 0) {
+      x <- unlist(x[names(x) == var], use.names = FALSE)
+    } else {
+      x <- NA
+    }
+  }
+  x
+}
+get_var_.default <- function(x, var) NULL
+
+names2 <- function(x) {
+  x <- names(x)
+  #x[!duplicated(sub("\\d+$", "", x))]
+  x
+}
+
+all_the_names <- function(x) {
+  nms <- names2(x)
+  while (any(dapr::vap_lgl(x, is.recursive))) {
+    x <- unlist(unname(x), recursive = FALSE)
+    nms <- c(nms, sub("^[^.]+\\.", "", names2(x)))
+  }
+  nms
+}
+
+get_var <- function(x, ...) UseMethod("get_var")
+get_var.list <- function(x, ...) {
+  dots <- tidyselect::vars_select(unique(all_the_names(x)), ...)
+  dapr::lap(dots, ~ get_var_(x, .x))
+}
+get_var.default <- function(x, var) NULL
+
+is_rec <- function(x) is.recursive(x) && isTRUE(any(names(x) != ""))
