@@ -1,3 +1,12 @@
+#' tabb
+#'
+#' Generates a frequency table tibble
+#'
+#' @param ... One or more vectors, a data frame, or a data frame with tidy-
+#'   selected columns
+#' @param sort Logical indicating whether to sort in order from most to least
+#'   frequent, defaults to TRUE
+#' @export
 tabb <- function(..., sort = TRUE) {
   if (is.data.frame(..1) && length(capture_dots(...)) > 1L) {
     x <- sel(...)
