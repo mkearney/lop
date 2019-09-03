@@ -6,28 +6,24 @@
 #'   selected columns
 #' @param sort Logical indicating whether to sort in order from most to least
 #'   frequent, defaults to TRUE
+#' @param useNA whether to use NA values, default is "ifany" and other options
+#'   include "always" and "no"
+#' @return A frequency tibble data frame
 #' @export
-tabb <- function(..., sort = TRUE) {
+tabb <- function(..., sort = TRUE, useNA = "ifany") {
   if (is.data.frame(..1) && length(capture_dots(...)) > 1L) {
     x <- sel(...)
-  } else {
+  } else if (!is.data.frame(..1)) {
     x <- list(...)
     names(x) <- names(pretty_dots(...))
-  }
-  uqs <- lapply(x, unique)
-  x[] <- mapply(factor, x, levels = uqs, SIMPLIFY = FALSE,
-    MoreArgs = list(exclude = NULL, ordered = FALSE))
-  x$dnn <- names(x)
-  x$useNA <- "always"
-  if (NCOL(x) > 1) {
-    x <- table(x)
   } else {
-    x <- do.call("table", x)
+    x <- ..1
   }
-  x <- as.data.frame.table(x, responseName = "n",
-    stringsAsFactors = FALSE)
+  x <- as.data.frame.table(
+    table(x, useNA = useNA, dnn = names(x)),
+    responseName = "n", stringsAsFactors = FALSE)
   if (sort) {
-    x <- arr(x, -n)
+    x <- x[order(x$n, decreasing = TRUE), ]
   }
   as_tbl(x)
 }

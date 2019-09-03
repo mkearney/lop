@@ -4,7 +4,7 @@
 \alias{tabb}
 \title{tabb}
 \usage{
-tabb(..., sort = TRUE)
+tabb(..., sort = TRUE, useNA = "ifany")
 }
 \arguments{
 \item{...}{One or more vectors, a data frame, or a data frame with tidy-
@@ -12,6 +12,12 @@ selected columns}
 
 \item{sort}{Logical indicating whether to sort in order from most to least
 frequent, defaults to TRUE}
+
+\item{useNA}{whether to use NA values, default is "ifany" and other options
+include "always" and "no"}
+}
+\value{
+A frequency tibble data frame
 }
 \description{
 Generates a frequency table tibble
