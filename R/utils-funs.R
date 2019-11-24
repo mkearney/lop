@@ -38,6 +38,36 @@ brows <- dplyr::bind_rows
 #' @export
 bcols <- dplyr::bind_cols
 
+#' lj
+#'
+#' See \code{dplyr::\link[dplyr:left_join]{left_join}} for details.
+#'
+#' @name lj
+#' @rdname lj
+#' @keywords internal
+#' @export
+lj <- dplyr::left_join
+
+#' fj
+#'
+#' See \code{dplyr::\link[dplyr:full_join]{full_join}} for details.
+#'
+#' @name fj
+#' @rdname fj
+#' @keywords internal
+#' @export
+fj <- dplyr::full_join
+
+#' rj
+#'
+#' See \code{dplyr::\link[dplyr:right_join]{right_join}} for details.
+#'
+#' @name rj
+#' @rdname rj
+#' @keywords internal
+#' @export
+rj <- dplyr::right_join
+
 #' gby
 #'
 #' See \code{dplyr::\link[dplyr:group_by]{group_by}} for details.
@@ -188,6 +218,16 @@ pul <- dplyr::pull
 #' @export
 spr <- tidyr::spread
 
+#' pvw
+#'
+#' See \code{tidyr::\link[tidyr:pivot_wider]{pivot_wider}} for details.
+#'
+#' @name pvw
+#' @rdname pvw
+#' @keywords internal
+#' @export
+pvw <- tidyr::pivot_wider
+
 #' gat
 #'
 #' See \code{tidyr::\link[tidyr:gather]{gather}} for details.
@@ -197,6 +237,16 @@ spr <- tidyr::spread
 #' @keywords internal
 #' @export
 gat <- tidyr::gather
+
+#' pvl
+#'
+#' See \code{tidyr::\link[tidyr:pivot_longer]{pivot_longer}} for details.
+#'
+#' @name pvl
+#' @rdname pvl
+#' @keywords internal
+#' @export
+pvl <- tidyr::pivot_longer
 
 #' unn
 #'

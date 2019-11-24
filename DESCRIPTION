@@ -22,6 +22,10 @@ Imports:
     xml2,
     glue,
     future.apply,
-    dapr
+    dapr,
+    utils,
+    httr,
+    tidyselect,
+    jsonlite
 URL: https://github.com/mkearney/lop
 BugReports: https://github.com/mkearney/lop/issues

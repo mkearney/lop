@@ -35,28 +35,6 @@ http_url.url <- function(x) {
   httr::build_url(x)
 }
 
-## create URL as list
-url_lst <- function(x) UseMethod("url_lst")
-
-url_lst.default <- function(x) {
-  httr::parse_url(http_url(x))
-}
-url_lst.url <- function(x) {
-  httr::parse_url(http_url(h))
-}
-url_lst.list <- function(x) {
-  httr::parse_url(http_url(h))
-}
-
-
-# http_get(http_url(
-#   list(url = "https://mikewk.com", page = 2, sort = "date")
-# ))
-# http_get(
-#   list(url = "https://mikewk.com", page = 2, sort = "date")
-# )
-# http_url(list(url = "https://mikewk.com", page = 2, sort = "date"))
-# http_url(url("https://mike"))
 
 ## GET method
 http_get <- function(x, ...) {
@@ -68,25 +46,6 @@ http_get.character <- function(x, ...) {
 http_get.list <- function(x, ...) {
   x <- http_url(x)
   httr::GET(x, ...)
-}
-http_get.url_str <- function(x, ...) {
-  httr::GET(x, ...)
-}
-
-## POST method
-http_post <- function(x, ...) {
-  UseMethod("http_post")
-}
-http_post.character <- function(x, ...) {
-  x <- url_str(x)
-  http_post(x, ...)
-}
-http_post.list <- function(x, ...) {
-  x <- url_str(x)
-  http_post(x, ...)
-}
-http_post.url_str <- function(x, ...) {
-  httr::POST(x, ...)
 }
 
 
@@ -139,18 +98,18 @@ fix_json_string <- function(x) {
 }
 
 pbracket <- function(x) paste0("[", x, "]")
-fj_ <- function(x, ...) {
+frj_ <- function(x, ...) {
   o <- try_null(jsonlite::fromJSON(x, ...))
   o <- o %||% try_null(jsonlite::fromJSON(
     fix_json_string(x), ...))
   o %||% try_null(jsonlite::fromJSON(
     pbracket(x), ...))
 }
-fj <- function(x, ...) {
+frj <- function(x, ...) {
   if (length(x) == 1) {
-    fj_(x, ...)
+    frj_(x, ...)
   } else {
-    dapr::lap(x, fj_, ...)
+    dapr::lap(x, frj_, ...)
   }
 }
 
@@ -175,7 +134,7 @@ all_var_names.list <- function(x) {
 }
 
 all_pos_txt <- function(x) {
-  sh <- capture.output(xml2::html_structure(x))
+  sh <- utils::capture.output(xml2::html_structure(x))
   sh <- trimws(sh)
   sh <- grep("^[^<]|[^>]$", sh, value = TRUE, invert = TRUE)
   sh <- gsub("\\s{0,}\\[[^]]+\\]>", ">", sh)
@@ -184,9 +143,11 @@ all_pos_txt <- function(x) {
   sh <- ifelse(grepl("<style", sh), sh %P% "</style>", sh)
   yn <- grep("^<[/ ]{0,}html", sh, invert = TRUE)
   sh[yn] <- "<" %P% gsub("^<|[.# >].*", "", sh[yn]) %P% "/>"
-  all_nodes <- paste(sh, collapse = " ") %P% "</html>" %>% hread() %>% hlst() %>% all_var_names() %>% unique()
-  unlist(dapr::lap(all_nodes, ~ c(hnodes(x, .x) %>% hattrs() %>% unlist(), hnodes(x, .x) %>% htext()))) %>%
-    grep('":', ., value = TRUE)
+  all_nodes <- paste(sh, collapse = " ") %P% "</html>" %>% hread() %>%
+    hlst() %>% all_var_names() %>% unique()
+  x <- unlist(dapr::lap(all_nodes, ~ c(hnodes(x, .x) %>% hattrs() %>% unlist(),
+    hnodes(x, .x) %>% htext())))
+  grep('":', x, value = TRUE)
 }
 rm_empty <- function(x) UseMethod("rm_empty")
 
