@@ -4,9 +4,17 @@
 \alias{pvw}
 \title{pvw}
 \usage{
-pvw(data, id_cols = NULL, names_from = name, names_prefix = "",
-  names_sep = "_", names_repair = "check_unique",
-  values_from = value, values_fill = NULL, values_fn = NULL)
+pvw(
+  data,
+  id_cols = NULL,
+  names_from = name,
+  names_prefix = "",
+  names_sep = "_",
+  names_repair = "check_unique",
+  values_from = value,
+  values_fill = NULL,
+  values_fn = NULL
+)
 }
 \description{
 See \code{tidyr::\link[tidyr:pivot_wider]{pivot_wider}} for details.

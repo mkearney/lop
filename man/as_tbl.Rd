@@ -4,9 +4,13 @@
 \alias{as_tbl}
 \title{as_tbl}
 \usage{
-as_tbl(x, ..., .rows = NULL, .name_repair = c("check_unique", "unique",
-  "universal", "minimal"),
-  rownames = pkgconfig::get_config("tibble::rownames", NULL))
+as_tbl(
+  x,
+  ...,
+  .rows = NULL,
+  .name_repair = c("check_unique", "unique", "universal", "minimal"),
+  rownames = pkgconfig::get_config("tibble::rownames", NULL)
+)
 }
 \description{
 See \code{tibble::\link[tibble:as_tibble]{as_tibble}} for details.

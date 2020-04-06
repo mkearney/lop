@@ -18,6 +18,16 @@ tbl <- tibble::tibble
 #' @export
 as_tbl <- tibble::as_tibble
 
+#' as_tsbl
+#'
+#' See \code{tsibble::\link[tsibble::as_tsibble]{as_tsibble}} for details.
+#'
+#' @name as_tsbl
+#' @rdname as_tsbl
+#' @keywords internal
+#' @export
+as_tsbl <- tsibble::as_tsibble
+
 #' brows
 #'
 #' See \code{dplyr::\link[dplyr:bind_rows]{bind_rows}} for details.
@@ -198,6 +208,16 @@ arr <- dplyr::arrange
 #' @export
 dsc <- dplyr::desc
 
+#' n
+#'
+#' See \code{dplyr::\link[dplyr:n]{n}} for details.
+#'
+#' @name n
+#' @rdname n
+#' @keywords internal
+#' @export
+n <- dplyr::n
+
 #' pul
 #'
 #' See \code{dplyr::\link[dplyr:pull]{pull}} for details.
@@ -257,6 +277,7 @@ pvl <- tidyr::pivot_longer
 #' @keywords internal
 #' @export
 unn <- tidyr::unnest
+
 
 #' glu
 #'

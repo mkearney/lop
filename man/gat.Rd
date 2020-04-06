@@ -4,8 +4,15 @@
 \alias{gat}
 \title{gat}
 \usage{
-gat(data, key = "key", value = "value", ..., na.rm = FALSE,
-  convert = FALSE, factor_key = FALSE)
+gat(
+  data,
+  key = "key",
+  value = "value",
+  ...,
+  na.rm = FALSE,
+  convert = FALSE,
+  factor_key = FALSE
+)
 }
 \description{
 See \code{tidyr::\link[tidyr:gather]{gather}} for details.

@@ -4,10 +4,20 @@
 \alias{fap}
 \title{fap}
 \usage{
-fap(X, FUN, ..., future.stdout = TRUE, future.conditions = NULL,
-  future.globals = TRUE, future.packages = NULL, future.lazy = FALSE,
-  future.seed = FALSE, future.scheduling = 1,
-  future.chunk.size = NULL)
+fap(
+  X,
+  FUN,
+  ...,
+  future.stdout = TRUE,
+  future.conditions = NULL,
+  future.globals = TRUE,
+  future.packages = NULL,
+  future.lazy = FALSE,
+  future.seed = FALSE,
+  future.scheduling = 1,
+  future.chunk.size = NULL,
+  future.label = "future_lapply-\%d"
+)
 }
 \description{
 See \code{future.apply::\link[future.apply:future_lapply]{future_lapply}} for details.

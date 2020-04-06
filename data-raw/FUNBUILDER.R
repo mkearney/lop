@@ -84,3 +84,46 @@ more_dots_funs <- dapr::vap_chr(more_dots,
 
 cat(paste(c(dots_funs, more_dots_funs), collapse = "\n\n"),
   file = "R/utils-funs.R")
+
+
+x <- c(
+  doc_pkg_fun("ggplot2", "ggplot", "ggp"),
+  doc_pkg_fun("ggplot2", "aes", "aes"),
+  doc_pkg_fun("ggplot2", "geom_point", "gpn"),
+  doc_pkg_fun("ggplot2", "geom_line", "gln"),
+  doc_pkg_fun("ggplot2", "geom_smooth", "gsm"),
+  doc_pkg_fun("ggplot2", "stat_smooth", "ssm"),
+  doc_pkg_fun("ggplot2", "geom_polygon", "gpl"),
+  doc_pkg_fun("ggplot2", "geom_text", "gtx"),
+  doc_pkg_fun("ggplot2", "geom_label", "glb"),
+  doc_pkg_fun("ggplot2", "geom_segment", "gsg"),
+  doc_pkg_fun("ggplot2", "geom_vline", "gvl"),
+  doc_pkg_fun("ggplot2", "geom_hline", "ghl"),
+  doc_pkg_fun("ggplot2", "labs", "labs"),
+  doc_pkg_fun("ggplot2", "ylim", "ylim"),
+  doc_pkg_fun("ggplot2", "xlim", "xlim"),
+  doc_pkg_fun("ggplot2", "rel", "rel"),
+  doc_pkg_fun("ggplot2", "facet_wrap", "fwr"),
+  doc_pkg_fun("ggplot2", "facet_grid", "fgr"),
+  doc_pkg_fun("ggplot2", "annotate", "ant"),
+  doc_pkg_fun("ggplot2", "element_line", "eln"),
+  doc_pkg_fun("ggplot2", "element_text", "etx"),
+  doc_pkg_fun("ggplot2", "element_rect", "erc"),
+  doc_pkg_fun("ggplot2", "element_blank", "ebl"),
+  doc_pkg_fun("ggplot2", "theme", "thm"),
+  doc_pkg_fun("ggplot2", "scale_fill_viridis_d", "sfvd"),
+  doc_pkg_fun("ggplot2", "scale_fill_viridis_c", "sfvc"),
+  doc_pkg_fun("ggplot2", "scale_x_continuous", "sxc"),
+  doc_pkg_fun("ggplot2", "scale_x_discrete", "sxd"),
+  doc_pkg_fun("ggplot2", "scale_y_continuous", "sxc"),
+  doc_pkg_fun("ggplot2", "scale_y_discrete", "syd"),
+  doc_pkg_fun("ggplot2", "coord_cartesion", "ccr"),
+  doc_pkg_fun("ggplot2", "coord_flip", "cfl")
+)
+cat(paste(
+  x,
+  collapse = "\n\n"
+),
+  file = "R/funs-ggplot.R")
+
+ggplot2::scale_fill_viridis_d()

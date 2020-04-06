@@ -4,8 +4,16 @@
 \alias{glu}
 \title{glu}
 \usage{
-glu(..., .sep = "", .envir = parent.frame(), .open = "{",
-  .close = "}", .na = "NA", .transformer = identity_transformer)
+glu(
+  ...,
+  .sep = "",
+  .envir = parent.frame(),
+  .open = "{",
+  .close = "}",
+  .na = "NA",
+  .transformer = identity_transformer,
+  .trim = TRUE
+)
 }
 \description{
 See \code{glue::\link[glue:glue]{glue}} for details.

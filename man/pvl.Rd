@@ -4,10 +4,19 @@
 \alias{pvl}
 \title{pvl}
 \usage{
-pvl(data, cols, names_to = "name", names_prefix = NULL,
-  names_sep = NULL, names_pattern = NULL, names_ptypes = list(),
-  names_repair = "check_unique", values_to = "value",
-  values_drop_na = FALSE, values_ptypes = list())
+pvl(
+  data,
+  cols,
+  names_to = "name",
+  names_prefix = NULL,
+  names_sep = NULL,
+  names_pattern = NULL,
+  names_ptypes = list(),
+  names_repair = "check_unique",
+  values_to = "value",
+  values_drop_na = FALSE,
+  values_ptypes = list()
+)
 }
 \description{
 See \code{tidyr::\link[tidyr:pivot_longer]{pivot_longer}} for details.

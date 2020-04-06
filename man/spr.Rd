@@ -4,8 +4,7 @@
 \alias{spr}
 \title{spr}
 \usage{
-spr(data, key, value, fill = NA, convert = FALSE, drop = TRUE,
-  sep = NULL)
+spr(data, key, value, fill = NA, convert = FALSE, drop = TRUE, sep = NULL)
 }
 \description{
 See \code{tidyr::\link[tidyr:spread]{spread}} for details.

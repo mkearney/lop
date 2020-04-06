@@ -4,8 +4,11 @@
 \alias{tbl}
 \title{tbl}
 \usage{
-tbl(..., .rows = NULL, .name_repair = c("check_unique", "unique",
-  "universal", "minimal"))
+tbl(
+  ...,
+  .rows = NULL,
+  .name_repair = c("check_unique", "unique", "universal", "minimal")
+)
 }
 \description{
 See \code{tibble::\link[tibble:tibble]{tibble}} for details.

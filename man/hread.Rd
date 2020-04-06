@@ -4,8 +4,7 @@
 \alias{hread}
 \title{hread}
 \usage{
-hread(x, encoding = "", ..., options = c("RECOVER", "NOERROR",
-  "NOBLANKS"))
+hread(x, encoding = "", ..., options = c("RECOVER", "NOERROR", "NOBLANKS"))
 }
 \description{
 See \code{xml2::\link[xml2:read_html]{read_html}} for details.
